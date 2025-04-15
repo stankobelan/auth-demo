@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>Potvrdenie Odhlasenia</h2>
+<mat-dialog-content>
+  <p>Ste si istý, že sa chcete odhlásiť?</p>
+</mat-dialog-content>
+<mat-dialog-actions [align]="'end'">
+  <button mat-button (click)="onCancel()">Zrušiť</button>
+  <button mat-raised-button (click)="onConfirm()">Odhlásiť</button>
+</mat-dialog-actions>

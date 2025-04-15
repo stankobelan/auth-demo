@@ -1,0 +1,39 @@
+<mat-card class="auth-container">
+
+  <h2>{{ isLoginMode ? 'Login' : 'Sign Up' }}</h2>
+
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutGap="16px">
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error *ngIf="authForm.get('email')?.hasError('required')">
+        Email is required.
+      </mat-error>
+      <mat-error *ngIf="authForm.get('email')?.hasError('email')">
+        Enter a valid email.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error *ngIf="authForm.get('password')?.hasError('required')">
+        Password is required.
+      </mat-error>
+      <mat-error *ngIf="authForm.get('password')?.hasError('minlength')">
+        Password must be at least 6 characters long.
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="authForm.invalid">
+      {{ isLoginMode ? 'Login' : 'Sign Up' }}
+    </button>
+
+  </form>
+
+  <button mat-button (click)="onSwitchMode()">
+    Switch to {{ isLoginMode ? 'Sign Up' : 'Login' }}
+  </button>
+
+</mat-card>

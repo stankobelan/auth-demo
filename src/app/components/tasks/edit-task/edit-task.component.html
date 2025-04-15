@@ -1,0 +1,46 @@
+<h3>Edit Task</h3>
+
+<!-- Chybová hláška -->
+<mat-card *ngIf="errorMessage" class="error" style="margin-bottom: 16px;">
+  <mat-card-content>
+    <mat-error>{{ errorMessage }}</mat-error>
+  </mat-card-content>
+</mat-card>
+
+<!-- Načítavanie -->
+<mat-card *ngIf="isLoading">
+  <mat-card-content>
+    <mat-progress-spinner diameter="40" mode="indeterminate"></mat-progress-spinner>
+    <p>Loading task details...</p>
+  </mat-card-content>
+</mat-card>
+
+<!-- Formulár -->
+<mat-card *ngIf="!isLoading && task">
+  <form (ngSubmit)="updateTask()" #taskForm="ngForm" fxLayout="column" fxLayoutGap="16px">
+    <!-- Task ID -->
+    <mat-form-field appearance="fill" disabled>
+      <mat-label>Task ID</mat-label>
+      <input matInput [value]="task.id" readonly />
+    </mat-form-field>
+
+    <!-- Task Title -->
+    <mat-form-field appearance="fill">
+      <mat-label>Task Title</mat-label>
+      <input matInput [(ngModel)]="task.title" name="title" required />
+    </mat-form-field>
+
+    <!-- Completed -->
+    <mat-checkbox [(ngModel)]="task.completed" name="completed">
+      Mark as completed
+    </mat-checkbox>
+
+    <!-- Tlačidlá -->
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="8px">
+      <button mat-button type="button" (click)="cancelEdit()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid">
+        Save Changes
+      </button>
+    </div>
+  </form>
+</mat-card>

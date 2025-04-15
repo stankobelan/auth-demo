@@ -1,0 +1,6 @@
+<h2>Settings</h2>
+<div *ngFor="let setting of settings">
+  <mat-checkbox [(ngModel)]="setting.enabled">
+    {{ setting.name }}
+  </mat-checkbox>
+</div>

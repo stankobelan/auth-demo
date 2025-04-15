@@ -1,0 +1,25 @@
+<div>
+  <h2 style="margin-bottom: 24px;">ToDo List</h2>
+
+  <div fxLayout="column" fxLayoutGap="16px">
+    <mat-card *ngFor="let todo of todos" style="padding: 16px;">
+      
+      <!-- Prvý riadok: názov + stav -->
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="12px" style="margin-bottom: 12px;">
+        <span style="font-size: 16px; font-weight: 500;">{{ todo.title }}</span>
+        <mat-chip [color]="todo.completed ? 'accent' : 'warn'" selected>
+          {{ todo.completed ? 'Completed' : 'Pending' }}
+        </mat-chip>
+      </div>
+
+      <!-- Druhý riadok: tlačidlo Edit vľavo -->
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <button mat-raised-button color="secondary" (click)="editTodo(todo.id)">
+          <mat-icon>edit</mat-icon>
+          <span style="margin-left: 6px;">Edit</span>
+        </button>
+      </div>
+
+    </mat-card>
+  </div>
+</div>

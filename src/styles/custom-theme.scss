@@ -1,0 +1,64 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+// Define color palettes
+$primary-palette: mat.define-palette(mat.$purple-palette, 300); // Using purple as primary now
+$accent-palette: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+$warn-palette: mat.define-palette(mat.$red-palette);
+$success-palette: mat.define-palette(mat.$green-palette, 500);
+$info-palette: mat.define-palette(mat.$cyan-palette, 500);
+$light-blue-palette: mat.define-palette(mat.$light-blue-palette, 500);
+
+// Define theme
+$custom-theme: mat.define-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    warn: $warn-palette
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Apply the base theme
+@include mat.all-component-themes($custom-theme);
+
+// Custom dialog theme using Angular Material's proper theming
+.custom-dialog {
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: #f5f5f5;
+    
+    .mat-mdc-dialog-title {
+      color: mat.get-color-from-palette($primary-palette);
+      background-color: mat.get-color-from-palette($accent-palette);;
+    }
+    
+    .mat-mdc-dialog-actions {
+      .mat-warn {
+        color: mat.get-color-from-palette($warn-palette);
+      }
+    }
+  }
+}
+
+// Alternative custom dialog theme
+.custom-dialog-alt {
+  .mat-mdc-dialog-container {
+    --mdc-dialog-container-color: #f8f8f8;
+    
+    .mat-mdc-dialog-title {
+      color: mat.get-color-from-palette($accent-palette);
+      background-color: mat.get-color-from-palette($primary-palette);
+    }
+    
+    .mat-mdc-dialog-actions {
+      .mat-warn {
+        color: mat.get-color-from-palette($warn-palette);
+      }
+      
+      .mat-primary {
+        color: mat.get-color-from-palette($info-palette);
+      }
+    }
+  }
+}

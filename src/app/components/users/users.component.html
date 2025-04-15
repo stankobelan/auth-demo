@@ -1,0 +1,42 @@
+<mat-card>
+  <h2>User List</h2>
+
+  <div class="custom-table-container">
+    <table mat-table [dataSource]="users" class="mat-elevation-z2 custom-table">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef class="custom-header-cell">Name</th>
+        <td mat-cell *matCellDef="let user" class="custom-cell">{{ user.name }}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef class="custom-header-cell">Email</th>
+        <td mat-cell *matCellDef="let user" class="custom-cell">{{ user.email }}</td>
+      </ng-container>
+
+      <!-- Role Column -->
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef class="custom-header-cell">Role</th>
+        <td mat-cell *matCellDef="let user" class="custom-cell">{{ user.role }}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="custom-header-cell">Actions</th>
+        <td mat-cell *matCellDef="let user" class="custom-cell">
+          <button mat-button color="accent" (click)="editUser(user)">Edit</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="['name', 'email', 'role', 'actions']" class="custom-header-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['name', 'email', 'role', 'actions']" class="custom-row"></tr>
+
+    </table>
+  </div>
+
+  <div *ngIf="profileData">
+    <app-edit-profile [profileData]="profileData"></app-edit-profile>
+  </div>
+</mat-card>

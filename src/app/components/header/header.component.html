@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" >
+  <button mat-button routerLink="/">Home</button>
+  <button *ngIf="!currentUser" mat-button routerLink="/auth">Authenticate</button>
+  <button *ngIf="currentUser" mat-button (click)="onLogout()">Logout</button>
+  <button *ngIf="currentUser" mat-button routerLink="/protected">Protected Page</button>
+  <!-- Admin links -->
+  <ng-container *ngIf="currentUser">
+    <button mat-button routerLink="/admin">Admin</button>
+    <button mat-button routerLink="/admin/users">Users</button>
+    <button mat-button routerLink="/admin/settings">Settings</button>
+  </ng-container>
+</mat-toolbar>

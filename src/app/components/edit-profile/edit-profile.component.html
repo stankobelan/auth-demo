@@ -1,0 +1,25 @@
+<mat-card>
+  <h2>Edit Profile</h2>
+
+  <form fxLayout="column" fxLayoutGap="16px">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="profileData.name" name="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="profileData.email" name="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <input matInput [(ngModel)]="profileData.role" name="role" disabled />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="button" (click)="formDirty = false">
+      Save
+    </button>
+  </form>
+</mat-card>
+
